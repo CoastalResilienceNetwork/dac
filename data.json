@@ -1,0 +1,232 @@
+{
+	"stats": {
+		"habitat": {
+			"habitat_general": {
+				"stat_1": {
+					"number": "57%",
+					"description": "of coastal habitat is highly vulnerable<br>to 5 ft sea level rise"
+				},
+				"stat_2":{
+					"number": "89%",
+					"description": "of upper beach is highly vulnerable<br>to 5 ft sea level rise"
+				}
+			},
+			"habitat_strategy": {
+				"stat_1": {
+					"number": "32%",
+					"description": "of this category is here"
+				},
+				"stat_2":{
+					"number": "48%",
+					"description": "of this category is here"
+				},
+				"stat_3":{
+					"number": "35%",
+					"description": "of this category is here"
+				},
+				"stat_4":{
+					"number": "23%",
+					"description": "of this category is here"
+				},
+				"stat_5":{
+					"number": "14%",
+					"description": "of this category is here"
+				},
+				"stat_6":{
+					"number": "5%",
+					"description": "of this category is here"
+				}
+			}
+		},
+		"Los Angeles County": {
+			"coastal-jobs": {
+				"all_jobs": {
+					"total": {
+						"number": "16%",
+						"description": "of the jobs in the county are near the<br>coastal zone"
+					},
+					"dac":{
+						"number": "52%",
+						"description": "of those coastal jobs are very or extremely low paying"
+					},
+					"chart":[
+						{"group":"<= $1,250", "total":148673, "dac":0 },
+						{"group":"$1,251 - $3,333", "total":227591, "dac":0},
+						{"group":"> $3,333", "total":346607, "dac":0},
+						{"group":"Total", "total":722817, "dac":0}
+					]
+				},
+				"dac_jobs": {
+					"total": {
+						"number": "30%",
+						"description": "of the coastal jobs in the county are held by disadvantaged community residents"
+					},
+					"dac":{
+						"number": "39%",
+						"description": "of those coastal jobs are very or extremely low paying"
+					},
+					"chart":[
+						{"group":"<= $1,250", "total":148673, "dac":52148 },
+						{"group":"$1,251 - $3,333", "total":227591, "dac":93395},
+						{"group":"> $3,333", "total":346607, "dac":73774},
+						{"group":"Total", "total":722817, "dac":219317}
+					]
+				}
+			},
+			"dac-jobs": {
+				"dac": {
+					"total": {
+						"number": "32%",
+						"description": "of the jobs in the county are held by disadvantaged community residents"
+					},
+					"dac":{
+						"number": "70%",
+						"description": "of those jobs are very or extremely low paying"
+					}
+				}
+			},
+			"dac-environment": {
+				"pollution_score":{
+					"stat_1": {
+						"number": "39%",
+						"description": "of the communities in the county have pollution burden scores > 90%"
+					},
+					"stat_2":{
+						"number": "31%",
+						"description": "of those communities are above the 90th percentile for toxic release"
+					},
+					"definition": "Pollution Burden scores are derived from the average percentiles of seven <i>Exposures</i> indicators (ozone and PM2.5 concentrations, diesel PM emissions, drinking water contaminants, pesticide use, toxic releases from facilities, and traffic density) and five <i>Environmental Effects</i> indicators (cleanup sites, impaired water bodies, groundwater threats, hazardous waste facilities and generators, and solid waste sites and facilities)."
+				},
+				"pop_score":{
+					"stat_1": {
+						"number": "30%",
+						"description": "of the communities in the county have population characteristic scores > 90%"
+					},
+					"stat_2":{
+						"number": "41%",
+						"description": "of those communities are above the 90th percentile for low birth rate"
+					},
+					"definition": "Population Characteristics scores are derived from the average percentiles of three <i>Sensitive Populations</i> indicators (asthma, cardiovascular disease, and low birth weight, ) and five <i>Socioeconomic Factors</i> indicators (educational attainment, housing burdened low income households, linguistic isolation, poverty, and unemployment)."
+				},
+				"ces_score":{
+					"stat_1": {
+						"number": "50%",
+						"description": "of all disadvantaged communities in the state are in the county"
+					},
+					"stat_2":{
+						"number": "47%",
+						"description": "of the population in the county are living in disadvantaged communities"
+					},
+					"definition": "CalEnviroScreen 3.0 scores are derived by multiplying the weighted scores of environmental conditions for <i>Pollution Burden</i> indicators and health and vulnerability factors for <i>Population Characteristic</i> indicators."
+				}
+			
+			}
+		},
+		"Santa Monica": {
+			"coastal-jobs": {
+				"all_jobs": {
+					"total": {
+						"number": "49%",
+						"description": "of the jobs in the city are very or extremely low paying "
+					},
+					"dac":{
+						"number": "24%",
+						"description": "of the jobs in the city are held by disadvantaged community residents"
+					},
+					"chart":[
+						{"group":"<= $1,250", "total":17157, "dac":0 },
+						{"group":"$1,251 - $3,333", "total":25899, "dac":0},
+						{"group":"> $3,333", "total":45209, "dac":0},
+						{"group":"Total", "total":88265, "dac":0}
+					]
+				},
+				"dac_jobs": {
+					"total": {
+						"number": "49%",
+						"description": "of the jobs in the city are very or extremely low paying"
+					},
+					"dac":{
+						"number": "31%",
+						"description": "of those jobs are are held by disadvantaged community residents"
+					},
+					"chart":[
+						{"group":"<= $1,250", "total":17157, "dac":4703 },
+						{"group":"$1,251 - $3,333", "total":25899, "dac":8491 },
+						{"group":"> $3,333", "total":45209, "dac":7595 },
+						{"group":"Total", "total":88265, "dac":20789 }
+					]
+				},
+				"drive": {
+					"stat_1": {
+						"number": "55%",
+						"description": "of workers in the city travel more than 10 miles to work"
+					},
+					"stat_2":{
+						"number": "29%",
+						"description": "of those workers hold very or extrememly low paying jobs"
+					},
+					"chart": [
+						{"group":"< 10 mi", "value":39366, "pct":45 },
+						{"group":"10 - 24 mi", "value":30221, "pct":34 },
+						{"group":"25 - 50 mi", "value":9143, "pct":10 },
+						{"group":"> 50 mi", "value":9535, "pct":11 }
+					]
+				}
+			}		
+		},
+		"Long Beach": {
+		
+			"coastal-jobs": {
+				"all_jobs": {
+					"total": {
+						"number": "55%",
+						"description": "of the jobs in the city are very or extremely low paying"
+					},
+					"dac":{
+						"number": "34%",
+						"description": "of the jobs in the city are held by disadvantaged community residents"
+					},
+					"chart":[
+						{"group":"<= $1,250", "total":41848, "dac":0 },
+						{"group":"$1,251 - $3,333", "total":51409, "dac":0},
+						{"group":"> $3,333", "total":76537, "dac":0},
+						{"group":"Total", "total":169794, "dac":0}
+					]
+				},
+				"dac_jobs": {
+					"total": {
+						"number": "55%",
+						"description": "of the jobs in the city are very or extremely low paying"
+					},
+					"dac":{
+						"number": "39%",
+						"description": "of those jobs are are held by disadvantaged community residents"
+					},
+					"chart":[
+						{"group":"<= $1,250", "total":41848, "dac":17141 },
+						{"group":"$1,251 - $3,333", "total":51409, "dac":21507},
+						{"group":"> $3,333", "total":76537, "dac":19375},
+						{"group":"Total", "total":169794, "dac":58023}
+					]
+				},
+				"drive": {
+					"stat_1": {
+						"number": "46%",
+						"description": "of workers in the city travel more than 10 miles to work"
+					},
+					"stat_2":{
+						"number": "46%",
+						"description": "of those workers hold very or extrememly low paying jobs"
+					},
+					"chart": [
+						{"group":"< 10 mi", "value":90942, "pct":54 },
+						{"group":"10 - 24 mi", "value":45998, "pct":27 },
+						{"group":"25 - 50 mi", "value":15235, "pct":9 },
+						{"group":"> 50 mi", "value":17619, "pct":10 }
+					]
+				}
+			}
+		
+		}
+	}
+}

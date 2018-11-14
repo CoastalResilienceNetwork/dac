@@ -1,0 +1,231 @@
+{
+	"service": "http://dev.services.coastalresilience.org/arcgis/rest/services/California/CR_DAC/MapServer",
+	"layers": {
+		
+		"habitat_strategy": { "type": "dynamic", "ids":[2] },
+		"habitat_general": { "type": "dynamic", "ids":[3] },
+		
+		"la_county_wac_all_jobs_blocks_1250": { "type": "dynamic", "ids":[6] },
+		"la_county_wac_all_jobs_blocks_1250_3333": { "type": "dynamic", "ids":[7] },
+		"la_county_wac_all_jobs_blocks_3333": { "type": "dynamic", "ids":[8] },
+		"la_county_wac_all_jobs_blocks": { "type": "dynamic", "ids":[9] },
+		"la_county_wac_all_jobs_density_1250": { "type": "dynamic", "ids":[10] },
+		"la_county_wac_all_jobs_density_1250_3333": { "type": "dynamic", "ids":[11] },
+		"la_county_wac_all_jobs_density_3333": { "type": "dynamic", "ids":[12] },
+		"la_county_wac_all_jobs_density": { "type": "dynamic", "ids":[13] },
+		
+		"la_county_wac_dac_jobs_blocks_1250": { "type": "dynamic", "ids":[15] },
+		"la_county_wac_dac_jobs_blocks_1250_3333": { "type": "dynamic", "ids":[16] },
+		"la_county_wac_dac_jobs_blocks_3333": { "type": "dynamic", "ids":[17] },
+		"la_county_wac_dac_jobs_blocks": { "type": "dynamic", "ids":[18] },
+		"la_county_wac_dac_jobs_density_1250": { "type": "dynamic", "ids":[19] },
+		"la_county_wac_dac_jobs_density_1250_3333": { "type": "dynamic", "ids":[20] },
+		"la_county_wac_dac_jobs_density_3333": { "type": "dynamic", "ids":[21] },
+		"la_county_wac_dac_jobs_density": { "type": "dynamic", "ids":[22] },
+		
+		"rac_blocks_1250": { "type": "dynamic", "ids":[26] },
+		"rac_blocks_1250_3333": { "type": "dynamic", "ids":[27] },
+		"rac_blocks_3333": { "type": "dynamic", "ids":[28] },
+		"rac_blocks": { "type": "dynamic", "ids":[29] },
+		"rac_density_1250": { "type": "dynamic", "ids":[30] },
+		"rac_density_1250_3333": { "type": "dynamic", "ids":[31] },
+		"rac_density_3333": { "type": "dynamic", "ids":[32] },
+		"rac_density": { "type": "dynamic", "ids":[33] },
+		
+		"santa_monica_wac_all_jobs_blocks_1250": { "type": "dynamic", "ids":[42] },
+		"santa_monica_wac_all_jobs_blocks_1250_3333": { "type": "dynamic", "ids":[43] },
+		"santa_monica_wac_all_jobs_blocks_3333": { "type": "dynamic", "ids":[44] },
+		"santa_monica_wac_all_jobs_blocks": { "type": "dynamic", "ids":[45] },
+		"santa_monica_wac_all_jobs_density_1250": { "type": "dynamic", "ids":[46] },
+		"santa_monica_wac_all_jobs_density_1250_3333": { "type": "dynamic", "ids":[47] },
+		"santa_monica_wac_all_jobs_density_3333": { "type": "dynamic", "ids":[48] },
+		"santa_monica_wac_all_jobs_density": { "type": "dynamic", "ids":[49] },
+		
+		"santa_monica_wac_dac_jobs_blocks_1250": { "type": "dynamic", "ids":[51] },
+		"santa_monica_wac_dac_jobs_blocks_1250_3333": { "type": "dynamic", "ids":[52] },
+		"santa_monica_wac_dac_jobs_blocks_3333": { "type": "dynamic", "ids":[53] },
+		"santa_monica_wac_dac_jobs_blocks": { "type": "dynamic", "ids":[54] },
+		"santa_monica_wac_dac_jobs_density_1250": { "type": "dynamic", "ids":[55] },
+		"santa_monica_wac_dac_jobs_density_1250_3333": { "type": "dynamic", "ids":[56] },
+		"santa_monica_wac_dac_jobs_density_3333": { "type": "dynamic", "ids":[57] },
+		"santa_monica_wac_dac_jobs_density": { "type": "dynamic", "ids":[58] },
+		
+		"long_beach_wac_all_jobs_blocks_1250": { "type": "dynamic", "ids":[62] },
+		"long_beach_wac_all_jobs_blocks_1250_3333": { "type": "dynamic", "ids":[63] },
+		"long_beach_wac_all_jobs_blocks_3333": { "type": "dynamic", "ids":[64] },
+		"long_beach_wac_all_jobs_blocks": { "type": "dynamic", "ids":[65] },
+		"long_beach_wac_all_jobs_density_1250": { "type": "dynamic", "ids":[66] },
+		"long_beach_wac_all_jobs_density_1250_3333": { "type": "dynamic", "ids":[67] },
+		"long_beach_wac_all_jobs_density_3333": { "type": "dynamic", "ids":[68] },
+		"long_beach_wac_all_jobs_density": { "type": "dynamic", "ids":[69] },
+		
+		"long_beach_wac_dac_jobs_blocks_1250": { "type": "dynamic", "ids":[71] },
+		"long_beach_wac_dac_jobs_blocks_1250_3333": { "type": "dynamic", "ids":[72] },
+		"long_beach_wac_dac_jobs_blocks_3333": { "type": "dynamic", "ids":[73] },
+		"long_beach_wac_dac_jobs_blocks": { "type": "dynamic", "ids":[74] },
+		"long_beach_wac_dac_jobs_density_1250": { "type": "dynamic", "ids":[75] },
+		"long_beach_wac_dac_jobs_density_1250_3333": { "type": "dynamic", "ids":[76] },
+		"long_beach_wac_dac_jobs_density_3333": { "type": "dynamic", "ids":[77] },
+		"long_beach_wac_dac_jobs_density": { "type": "dynamic", "ids":[78] },
+		
+		"ces_score": {
+			"type": "feature",
+			"id":35,
+			"outFields":["Census_Tract","Total_Population", "Ozone_Pctl", "PM25_Pctl", "Diesel_PM_Pctl", "Drinking_Water_Pctl", "Pesticides_Pctl", "Tox_Release_Pctl", "Traffic_Pctl", "Cleanup_Sites_Pctl", "Groundwater_Threats_Pctl", "Haz_Waste_Pctl", "Imp_Water_Bodies_Pctl", "Solid_Waste_Pctl", "Asthma_Pctl", "Low_Birth_Weight_Pctl", "Cardiovascular_Disease_Pctl", "Education_Pctl", "Linguistic_Isolation_Pctl", "Poverty_Pctl", "Unemployment_Pctl", "Housing_Burden_Pctl", "CES3_Percentile", "Pollution_Burden_Pctl", "Pop_Char_Percentile" ],
+			"template": "enviro"
+		},
+		"pollution_score": {
+			"type": "feature",
+			"id":36,
+			"outFields":["Census_Tract","Total_Population", "Ozone_Pctl", "PM25_Pctl", "Diesel_PM_Pctl", "Drinking_Water_Pctl", "Pesticides_Pctl", "Tox_Release_Pctl", "Traffic_Pctl", "Cleanup_Sites_Pctl", "Groundwater_Threats_Pctl", "Haz_Waste_Pctl", "Imp_Water_Bodies_Pctl", "Solid_Waste_Pctl", "Pollution_Burden_Pctl"],
+			"template": "enviro"
+		},
+		"pop_score": { 
+			"type": "feature",
+			"id":37,
+			"outFields":["Census_Tract", "Total_Population", "Asthma_Pctl", "Low_Birth_Weight_Pctl", "Cardiovascular_Disease_Pctl", "Education_Pctl", "Linguistic_Isolation_Pctl", "Poverty_Pctl", "Unemployment_Pctl", "Housing_Burden_Pctl", "Pop_Char_Percentile"],
+			"template": "enviro"
+		},
+		
+		"coastal_access_tract":{
+			"type": "feature",
+			"id":82,
+			"outFields":["Census_Tract_ID", "FROM_X", "FROM_Y", "Median_Income", "Beach_Name", "Distance_To_Beach", "Relative_Distance_To_Beach"],
+			"template": "access"
+		},
+		"coastal_access_line":{
+			"type": "feature",
+			"id":81,
+			"outFields":["Census_Tract_ID"],
+			"layerDefinition": true,
+			"layerDefinitionField": "Census_Tract_ID",
+			"layerDefinitionValue": "''"
+		},
+		"coastal_access_beach":{
+			"type": "feature",
+			"id":80,
+			"outFields":["Beach_Name"]
+		}
+		
+	},
+	"field_alias_mapping": {
+		"Census_Tract": "Tract ID",
+		"Total_Population": "Population",
+		"CES3_Score": "CES 3.0 Score",
+		"CES3_Percentile": "CalEnviroScreen 3.0 Percentile",
+		"CES3_Percentile_Range": "CalEnviroScreen 3.0 Percentile",
+		"Ozone": "Ozone",
+		"Ozone_Pctl": "Ozone",
+		"PM25": "PM 2.5",
+		"PM25_Pctl": "PM 2.5",
+		"Diesel_PM": "Diesel",
+		"Diesel_PM_Pctl": "Diesel",
+		"Drinking_Water": "Drinking Water",
+		"Drinking_Water_Pctl": "Drinking Water",
+		"Pesticides": "Pesticides",
+		"Pesticides_Pctl": "Pesticides",
+		"Tox_Release": "Toxic Release",
+		"Tox_Release_Pctl": "Toxic Release",
+		"Traffic": "Traffic",
+		"Traffic_Pctl": "Traffic",
+		"Cleanup_Sites": "Cleanups",
+		"Cleanup_Sites_Pctl": "Cleanups",
+		"Groundwater_Threats": "Groundwater Threats",
+		"Groundwater_Threats_Pctl": "Groundwater Threats",
+		"Haz_Waste": "Hazardous Waste",
+		"Haz_Waste_Pctl": "Hazardous Waste",
+		"Imp_Water_Bodies": "Impaired Water",
+		"Imp_Water_Bodies_Pctl": "Impaired Water",
+		"Solid_Waste": "Solid Waste",
+		"Solid_Waste_Pctl": "Solid Waste",
+		"Pollution_Burden": "Pollution Burden",
+		"Pollution_Burden_Score": "Pollution Burden Score",
+		"Pollution_Burden_Pctl": "Pollution Burden Percentile",
+		"Asthma": "Asthma",
+		"Asthma_Pctl": "Asthma",
+		"Low_Birth_Weight": "Low Birth Weight",
+		"Low_Birth_Weight_Pctl": "Low BirthWeight",
+		"Cardiovascular_Disease": "Cardiovascular Rate",
+		"Cardiovascular_Disease_Pctl": "Cardiovascular Rate",
+		"Education": "Education",
+		"Education_Pctl": "Education",
+		"Linguistic_Isolation": "Linguistic Isolation",
+		"Linguistic_Isolation_Pctl": "Linguistic Isolation",
+		"Poverty": "Poverty",
+		"Poverty_Pctl": "Poverty",
+		"Unemployment": "Unemployment",
+		"Unemployment_Pctl": "Unemployment",
+		"Housing_Burden": "Housing Burden",
+		"Housing_Burden_Pctl": "Housing Burden",
+		"Pop_Char": "Population Characteristic",
+		"Pop_Char_Score": "Population Characteristic Score",
+		"Pop_Char_Percentile": "Population Characteristic Percentile"
+	},
+	"tooltips": {
+		"info-circle": {
+			
+		},
+		"controls": {
+			
+		},
+		"chart": {
+
+		},
+		"stats": {
+		
+		}
+	},
+	"controls": {
+		"tooglebutton": {
+
+		},
+		"slider": {
+			"economic": {
+				"values": ["1250", "1250_3333", "3333", ""],
+				"labels":["< $1250", "$1250 - $3333", "> $3333", "All"]
+			}
+
+		}
+	},
+	"region": {
+		"Los Angeles County": {
+			"id":"la_county",
+			"extent": {
+				"xmin":-13248600.600215048,
+				"ymin":3966290.462756663,
+				"xmax":-13128900.213920414,
+				"ymax":4061683.8740565996,
+				"spatialReference": {
+					"wkid": 102100,
+					"latestWkid": 3857
+				}
+			}
+		},
+		"Santa Monica": {
+			"id":"santa_monica",
+			"extent": {
+				"xmin":-13193414,
+				"ymin":4027934,
+				"xmax":-13184930,
+				"ymax":4035788,
+				"spatialReference": {
+					"wkid": 102100,
+					"latestWkid": 3857
+				}
+			}
+		},
+		"Long Beach": {
+			"id":"long_beach",
+			"extent": {
+				"xmin": -13163734,
+				"ymin": 3993396,
+				"xmax": -13141932,
+				"ymax": 4013769,
+				"spatialReference": {
+					"wkid": 102100,
+					"latestWkid": 3857
+				}
+			}
+		}
+	}
+}

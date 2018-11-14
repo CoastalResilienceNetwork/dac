@@ -1,0 +1,9 @@
+{
+    "css": [
+		"plugins/dac/main.css"
+		
+    ],
+    "use": {
+		"underscore": { "attach": "_" }
+    }
+}

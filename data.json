@@ -13,28 +13,34 @@
 			},
 			"habitat_strategy": {
 				"stat_1": {
-					"number": "32%",
-					"description": "of this category is here"
+					"number": "3.5 km<sup style='font-size:16px;'>2</sup>",
+					"description": "of existing resilient conservation lands to maintain",
+					"color":"#247400"
 				},
 				"stat_2":{
-					"number": "48%",
-					"description": "of this category is here"
+					"number": "3.8 km<sup style='font-size:16px;'>2</sup>",
+					"description": "of resilient landscapes to conserve",
+					"color":"#55FF00"
 				},
 				"stat_3":{
-					"number": "35%",
-					"description": "of this category is here"
+					"number": "2.4 km<sup style='font-size:16px;'>2</sup>",
+					"description": "of habitat to manage in place for resilience",
+					"color":"#F57B7B"
 				},
 				"stat_4":{
-					"number": "23%",
-					"description": "of this category is here"
+					"number": "5.6 km<sup style='font-size:16px;'>2</sup>",
+					"description": "of potential losses of vulnerable habitats to mitigate",
+					"color":"#B50000"
 				},
 				"stat_5":{
-					"number": "14%",
-					"description": "of this category is here"
+					"number": "0.3 km<sup style='font-size:16px;'>2</sup>",
+					"description": "of potential future habitat to conserve and restore",
+					"color":"#E69900"
 				},
 				"stat_6":{
-					"number": "5%",
-					"description": "of this category is here"
+					"number": "18 km<sup style='font-size:16px;'>2</sup>",
+					"description": "of built environment to adapt",
+					"color":"#9D9D9D"
 				}
 			}
 		},

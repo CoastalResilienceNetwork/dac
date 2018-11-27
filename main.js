@@ -32,8 +32,8 @@ define([
 		 "d3",
 		"underscore",
 		"./app",
-		"dojo/text!plugins/dac/data.json",
-		"dojo/text!plugins/dac/interface.json"
+		"dojo/text!plugins/disadvantaged-communities/data.json",
+		"dojo/text!plugins/disadvantaged-communities/interface.json"
        ],
        function (declare, PluginBase, parser, on, registry, array, domConstruct, query, dom, domClass, domStyle, domAttr, d3, _, tool, appData, appConfig) {
            return declare(PluginBase, {
@@ -105,7 +105,6 @@ define([
                },
 
                identify: function(response){
-					console.log(response);
                }
            });
        });

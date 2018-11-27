@@ -93,6 +93,7 @@ define([
 			this._mapLayers = {};
 			this._backgroundMapLayers = {};
 			this._mapLayer = {};
+			this._displayState = "closed";
 			this._charts = {
 				jobs:{
 					chart:{}
@@ -104,7 +105,6 @@ define([
 					chart:{}
 				}
 			};
-			this._mapLayers_closeState = {};
 			this._extent = {
 				"xmin": 0,
 				"ymin": 0,
@@ -117,6 +117,13 @@ define([
 			};
 			this._data = JSON.parse(appData);
 			this._interface = JSON.parse(appConfig);
+			
+			on(this._map, "click", function(evt) {
+				var pt = evt.mapPoint;
+				if (self._displayState == "open" && self._mapLayer.id.indexOf("_blocks") >= 0) {
+					self.identifyBlock(pt);
+				}
+			})
 			
 			this.initialize = function(){
 				var region = "Los Angeles County";
@@ -146,20 +153,21 @@ define([
 
 			this.showTool = function(){
 				this._map.setExtent(new Extent(this._extent), true);
-				//var layer = (!_.isEmpty(this._mapLayer)) ? this._mapLayer : this._mapLayers["rac_density"];
-				//layer.show();
+				this._displayState = "open";
 			} 
 
 			this.hideTool = function(){
 				if(!_.isEmpty(this._mapLayer)) {
 					this._mapLayer.hide();
 				}
+				this._displayState = "closed";
 			}
 			
 			this.closeTool = function(){
 				if(!_.isEmpty(this._mapLayer)) {
 					this._mapLayer.hide();
 				}
+				this._displayState = "closed";
 			}
 			
 			this.loadLayers = function(){
@@ -234,15 +242,31 @@ define([
 								return "<b>ID</b>: " + graphic.attributes["Census_Tract_ID"];
 							});
 							template.setContent(function(graphic){
+								var relative = graphic.attributes["Relative_Distance_To_Beach"].replace(" for LA County", "");
+								switch (relative){
+									case "Higher than average":
+										color = "#D62F27";
+										break;
+									case "About average":
+										color = "#FFE08C";
+										break;
+									case "Lower than average":
+										color = "#1A9951"
+										break;
+									default:
+										color = "#787878"
+										break;
+								}
+								
 								var content = "";
 								content += "<b>Median Income</b>: $" + d3.format(",.0f")(graphic.attributes["Median_Income"]) + "<br>";
+								content += "<b>Coastal Access</b>: " + graphic.attributes["Beach_Name"] + "<br>";
 								content += "<b>Distance to Coastal Access</b>: " + d3.format(".1f")(parseFloat(graphic.attributes["Distance_To_Beach"])) + " mi<br>";
-								content += "<b>Beach Name</b>: " + graphic.attributes["Beach_Name"] + "<br>";
+								content += "<div style='margin:10px 0px;font-weight:bold;text-align:center;color:" + color + ";'>" + relative + " for the county</div>";
 								
 								self._mapLayers["coastal_access_line"].setDefinitionExpression("Census_Tract_ID = '" + graphic.attributes["Census_Tract_ID"] + "'")
 								
 								window.setTimeout(function() {
-									console.log(graphic.geometry);
 									var pt = graphic.geometry.getCentroid();
 									self._map.infoWindow.show(pt);
 								}, 250);
@@ -252,8 +276,10 @@ define([
 							
 							on(self._map.infoWindow, "hide", function(evt) {
 								if (self._map.getLayer("coastal_access_tract").visible) {
-									self._mapLayers["coastal_access_line"].setDefinitionExpression("Census_Tract_ID = ''")
+									self._mapLayers["coastal_access_line"].setDefinitionExpression("Census_Tract_ID = ''");
 								}
+								self._map.graphics.clear();
+								self._map.infoWindow.clearFeatures();
 							})
 						}
 		
@@ -300,7 +326,7 @@ define([
 				_.each(_.keys(this._backgroundMapLayers), function(key) {
 					self._backgroundMapLayers[key].hide();
 				});
-				if (layer != "") {
+				if (layer != "habitat_none") {
 					this._backgroundMapLayers[layer].show();
 				}
 			}
@@ -373,7 +399,7 @@ define([
 				
 				domConstruct.create("div", { 
 					class:"plugin-desc",
-					innerHTML:"<b><a href='http://www.cpuc.ca.gov/discom/' target='_blank'>Disadvantaged Communities</a></b> refers to the areas throughout California which most suffer from a combination of economic, health, and environmental burdens. Use this plugin to explore ..."
+					innerHTML:"This work explores the relationship between coastal habitats and <b><a href='http://www.cpuc.ca.gov/discom/' target='_blank'>disadvantaged communities</a></b>. It explores the questions of whether the potential loss of coastal habitats to sea level rise might have a disproportionate impact on low income jobs and low income residences within Los Angeles County."
 				}, this.inputsPane.containerNode);
 				
 				var display = (_.keys(this._interface.region).length > 1) ? "block" : "none";
@@ -834,9 +860,16 @@ define([
 				}, self.accessControlsContainer);
 				
 				domConstruct.create("div", {
-					style: "line-height: 14px; text-align: center;font-size: 12px;padding: 10px 20px 0px 20px;color: #777777;",
+					style: "line-height: 14px; text-align: center;font-size: 13px;padding: 10px 0px 0px 0px;color: #777777;",
+					innerHTML:"coastal access points include sandy beaches with facilities"
+				}, self.accessControlsContainer);
+				
+				domConstruct.create("div", {
+					style: "line-height: 14px; text-align: center;font-size: 12px;padding: 3px 20px 0px 20px;color: #777777;",
 					innerHTML:"-- click on a census tract in the map for more details --"
 				}, self.accessControlsContainer);
+				
+				
 			}
 			
 			this.createDacControls = function(table) {
@@ -1103,37 +1136,6 @@ define([
 					className: "stats-container"
 				}, contentDiv);
 				
-				/* var statDiv = domConstruct.create("div", {
-					className: "stat last"
-				}, containerDiv);
-				
-				domConstruct.create("div", {
-					className: "number",
-					style:"width:20%",
-					innerHTML: "57%"
-				}, statDiv);
-				
-				domConstruct.create("div", {
-					className: "description",
-					style:"width:80%",
-					innerHTML: "of coastal habitat is highly vulnerable<br>to 5 ft sea level rise"
-				}, statDiv);
-				
-				var statDiv = domConstruct.create("div", {
-					className: "stat next"
-				}, containerDiv);
-				
-				domConstruct.create("div", {
-					className: "number",
-					style:"width:20%",
-					innerHTML: "89%"
-				}, statDiv);
-				
-				domConstruct.create("div", {
-					className: "description",
-					style:"width:80%",
-					innerHTML: "of upper beach is highly vulnerable<br>to 5 ft sea level rise"
-				}, statDiv); */
 			}
 			
 			this.updateHabitatStats = function() {
@@ -1143,20 +1145,23 @@ define([
 				
 				if (group != "habitat_none") {
 					var stats = this._data.stats.habitat[group];
+					
 					array.forEach(_.keys(stats), function(stat) {
+						var color = (_.has(stats[stat], "color")) ? stats[stat].color : "#0096D6";
+						
 						var statDiv = domConstruct.create("div", {
 							className: "stat next"
 						}, containerDiv);
 						
 						domConstruct.create("div", {
 							className: "number",
-							style:"width:20%",
+							style:"width:30%; color:" + color + ";",
 							innerHTML: stats[stat].number
 						}, statDiv);
 						
 						domConstruct.create("div", {
 							className: "description",
-							style:"width:80%",
+							style:"width:70%",
 							innerHTML: stats[stat].description
 						}, statDiv);
 					})
@@ -2037,6 +2042,45 @@ define([
 
             this.hideMessageDialog = function() {
         		domStyle.set(self.tip, { "display": "none" });
+			}
+			
+			this.identifyBlock = function(pt) {
+				this._map.infoWindow.hide();
+				this._map.graphics.clear();
+				var layer = this._mapLayer;
+				if (layer.id.indexOf("_blocks") >= 0) {
+					var url = layer.url + "/" + layer.visibleLayers[0];
+					var fields = this._interface.layers[layer.id].fields;
+					
+					var query = new Query();
+					query.geometry = pt;
+					query.spatialRelationship = Query.SPATIAL_REL_INTERSECTS;
+					query.returnGeometry = true;
+					query.outFields = fields;
+					
+					var queryTask = new QueryTask(url);
+					queryTask.execute(query, function(response) {
+						if (response.features.length > 0) {
+							var graphic = response.features[0];
+							var attributes = graphic.attributes;
+							var pt = graphic.geometry.getCentroid();
+							self._map.infoWindow.setFeatures([graphic]);
+							
+							var content = "<table class='jobsPopupTable' style='border-collapse:collapse;'>";
+							content += "<tr><td style='text-align:center; font-weight:bold;border-bottom:1px solid #cccccc;padding:5px;' colspan=2># of Jobs by Earnings Category</td></tr>";
+							content += "<tr style='background:#efefef;'><td style='text-align:right;padding:5px;width:60%;'><b>&lt; $1250</b>:</td><td style='text-align:left;padding:5px;'>" + d3.format(",.0f")(attributes[fields[0]]) + "</td></tr>";
+							content += "<tr style='background:#ffffff;'><td style='text-align:right;padding:5px;width:60%;'><b>$1250 - $3333</b>:</td><td style='text-align:left;padding:5px;'>" + d3.format(",.0f")(attributes[fields[1]]) + "</td></tr>";
+							content += "<tr style='background:#efefef;'><td style='text-align:right;padding:5px;width:60%;'><b>&gt; $3333</b>:</td><td style='text-align:left;padding:5px;'>" + d3.format(",.0f")(attributes[fields[2]]) + "</td></tr>";
+							content += "<tr><td style='text-align:right;padding:5px;width:60%;border-top:1px solid #cccccc;'><b>Total</b>:</td><td style='text-align:left;padding:5px;border-top:1px solid #cccccc;'>" + d3.format(",.0f")(attributes[fields[3]]) + "</td></tr>";
+							content += "</table>";
+							
+							self._map.infoWindow.setTitle("");
+							self._map.infoWindow.setContent(content);
+							self._map.infoWindow.show(pt);
+						}
+						
+					});
+				}
 			}
 
 

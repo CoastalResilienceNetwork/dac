@@ -2,8 +2,5 @@
     "css": [
 		"plugins/disadvantaged-communities/main.css"
 		
-    ],
-    "use": {
-		"underscore": { "attach": "_" }
-    }
+    ]
 }

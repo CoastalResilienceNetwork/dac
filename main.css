@@ -685,3 +685,32 @@ line-height:8px;
 color: #0096d6;
 height:45px;
 }
+
+.legend-layer {
+width:auto !important;	
+}
+
+.custom-legend-layer {
+width: auto;
+margin-bottom: 10px;
+background-color: #fff;
+}
+
+.custom-legend-layer .custom-legend-title {
+margin-bottom: 5px;
+}
+
+.custom-legend-layer .item {
+/*     float: left;
+    clear: left; */
+}
+
+.custom-legend-layer img {
+    border: none;
+}
+
+.custom-legend-layer .item-label {
+    position: relative;
+    top: -4px;
+	margin-left:5px;
+}

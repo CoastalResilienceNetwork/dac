@@ -1,5 +1,5 @@
 {
-	"service": "http://dev.services.coastalresilience.org/arcgis/rest/services/California/CR_DAC/MapServer",
+	"service": "http://dev.services.coastalresilience.org/arcgis/rest/services/California/disadvantaged_communities/MapServer",
 	"layers": {
 		
 		"habitat_strategy": { "type": "dynamic", "ids":[2] },
@@ -72,18 +72,21 @@
 			"type": "feature",
 			"id":35,
 			"outFields":["Census_Tract","Total_Population", "Ozone_Pctl", "PM25_Pctl", "Diesel_PM_Pctl", "Drinking_Water_Pctl", "Pesticides_Pctl", "Tox_Release_Pctl", "Traffic_Pctl", "Cleanup_Sites_Pctl", "Groundwater_Threats_Pctl", "Haz_Waste_Pctl", "Imp_Water_Bodies_Pctl", "Solid_Waste_Pctl", "Asthma_Pctl", "Low_Birth_Weight_Pctl", "Cardiovascular_Disease_Pctl", "Education_Pctl", "Linguistic_Isolation_Pctl", "Poverty_Pctl", "Unemployment_Pctl", "Housing_Burden_Pctl", "CES3_Percentile", "Pollution_Burden_Pctl", "Pop_Char_Percentile" ],
+			"title":"CalEnviroScreen 3.0 Percentile Score",
 			"template": "enviro"
 		},
 		"pollution_score": {
 			"type": "feature",
 			"id":36,
 			"outFields":["Census_Tract","Total_Population", "Ozone_Pctl", "PM25_Pctl", "Diesel_PM_Pctl", "Drinking_Water_Pctl", "Pesticides_Pctl", "Tox_Release_Pctl", "Traffic_Pctl", "Cleanup_Sites_Pctl", "Groundwater_Threats_Pctl", "Haz_Waste_Pctl", "Imp_Water_Bodies_Pctl", "Solid_Waste_Pctl", "Pollution_Burden_Pctl"],
+			"title":"Pollution Burden Percentile Score",
 			"template": "enviro"
 		},
 		"pop_score": { 
 			"type": "feature",
 			"id":37,
 			"outFields":["Census_Tract", "Total_Population", "Asthma_Pctl", "Low_Birth_Weight_Pctl", "Cardiovascular_Disease_Pctl", "Education_Pctl", "Linguistic_Isolation_Pctl", "Poverty_Pctl", "Unemployment_Pctl", "Housing_Burden_Pctl", "Pop_Char_Percentile"],
+			"title":"Population Characteristics Percentile Score",
 			"template": "enviro"
 		},
 		
@@ -91,6 +94,7 @@
 			"type": "feature",
 			"id":82,
 			"outFields":["Census_Tract_ID", "FROM_X", "FROM_Y", "Median_Income", "Beach_Name", "Distance_To_Beach", "Relative_Distance_To_Beach"],
+			"title":"Median Household Income (%)",
 			"template": "access"
 		},
 		"coastal_access_line":{

@@ -37,6 +37,7 @@ define([
 		"esri/geometry/Point",
 		"esri/InfoTemplate",
 		"esri/geometry/screenUtils",
+		"esri/request",
 		"dojo/NodeList-traverse"
 		], 
 
@@ -77,7 +78,8 @@ define([
 			Extent,
 			Point,
 			InfoTemplate,
-			screenUtils
+			screenUtils,
+			esriRequest
 		  ) 
 		
 		{
@@ -89,6 +91,7 @@ define([
 			this._container = this._plugin.container;
 			this._plugin_directory = this._plugin.plugin_directory;
 			this._legend = this._plugin.legendContainer;
+			this._legendData = {};
 			this._map = this._plugin.map;
 			this._mapLayers = {};
 			this._backgroundMapLayers = {};
@@ -139,6 +142,7 @@ define([
 				}, this._container);
 				
 				this.loadLayers();
+				this.getLegend();
 				this.loadInterface();
 				this.loadJobsStats();
 				this.loadJobsChart();
@@ -168,6 +172,25 @@ define([
 					this._mapLayer.hide();
 				}
 				this._displayState = "closed";
+			}
+			
+			this.getLegend = function() {
+				var serviceUrl = this._interface.service;
+				var legendUrl = serviceUrl + "/legend"
+				
+				var legendRequest = esriRequest({
+					url: legendUrl,
+					content: { f: "json" },
+					handleAs: "json",
+					callbackParamName: "callback"
+				});
+				legendRequest.then(
+					function(response) {
+						self._legendData.layers = response.layers;
+					}, function(error) {
+						console.log("Error: ", error.message);
+					}
+				);
 			}
 			
 			this.loadLayers = function(){
@@ -262,7 +285,7 @@ define([
 								content += "<b>Median Income</b>: $" + d3.format(",.0f")(graphic.attributes["Median_Income"]) + "<br>";
 								content += "<b>Coastal Access</b>: " + graphic.attributes["Beach_Name"] + "<br>";
 								content += "<b>Distance to Coastal Access</b>: " + d3.format(".1f")(parseFloat(graphic.attributes["Distance_To_Beach"])) + " mi<br>";
-								content += "<div style='margin:10px 0px;font-weight:bold;text-align:center;color:" + color + ";'>" + relative + " for the county</div>";
+								content += "<div style='margin:10px 0px;font-weight:bold;text-align:center;color:" + color + ";'>" + relative + " distance for the county</div>";
 								
 								self._mapLayers["coastal_access_line"].setDefinitionExpression("Census_Tract_ID = '" + graphic.attributes["Census_Tract_ID"] + "'")
 								
@@ -312,6 +335,9 @@ define([
 			}
 			
 			this.updateMapLayers = function(layer) {
+				this._legend.innerHTML = "";
+				this._map.infoWindow.hide();
+				
 				_.each(_.keys(this._mapLayers), function(key) {
 					self._mapLayers[key].hide();
 				});
@@ -319,6 +345,7 @@ define([
 					this._mapLayer = this._mapLayers[layer];
 					this._mapLayer.show();
 				}
+				
 			}
 			
 			this.updateHabitatLayer = function() {
@@ -344,12 +371,15 @@ define([
 			}
 			
 			this.updateAccessLayer = function() {
+				domStyle.set(dom.byId("legend-container-0"), { "display":"none" });
 				this.updateMapLayers("");
 				this._mapLayer = this._mapLayers["coastal_access_tract"];
 				this._mapLayer.show();
 				this._mapLayers["coastal_access_line"].setDefinitionExpression("Census_Tract_ID = ''");
 				this._mapLayers["coastal_access_line"].show();
 				this._mapLayers["coastal_access_beach"].show();
+
+				this.updateCustomLegend("coastal_access_tract");
 			}
 			
 			this.updateDacJobsLayer = function() {
@@ -362,8 +392,37 @@ define([
 			}
 			
 			this.updateEnviroLayer = function() {
+				domStyle.set(dom.byId("legend-container-0"), { "display":"none" });
 				var layer = query(".plugin-dac .toggle-btn.enviro input[type=radio]:checked")[0].value;
 				this.updateMapLayers(layer);
+				
+				this.updateCustomLegend(layer);
+			}
+			
+			this.updateCustomLegend = function(key) {
+				var layer = _.findWhere(this._legendData.layers, { "layerId": this._interface.layers[key].id });
+				var items = layer.legend;
+				var legendContainer = domConstruct.create("div", { className: "custom-layer-legends" }, this._legend);
+				var legendContent = domConstruct.create("div", { className: "custom-legend-layer" });
+				legendContainer.appendChild(legendContent);
+				var legendTitle = domConstruct.create("div", { className: "custom-legend-title", innerHTML:this._interface.layers[key].title });
+				legendContent.appendChild(legendTitle);
+				array.forEach(items, function(item) {
+					var legendItem = domConstruct.create("div", { className: "item"});
+					legendContent.appendChild(legendItem);
+					domConstruct.create("img", { width:20, height:20, title: item.label, src:"data:image/png;base64," + item.imageData }, legendItem);
+					domConstruct.create("span", { className: "item-label", innerHTML:item.label }, legendItem);
+				});
+				
+				window.setTimeout(function() {
+					var wh_header = domGeom.getMarginBox(dojo.query(".legend-header")[0]);
+					var wh_custom = domGeom.getMarginBox(legendContainer);
+					var wh_layers = domGeom.getMarginBox(dojo.query(".layer-legends")[0]);
+					var width = wh_custom.w;
+					var height = wh_header.h + wh_custom.h + wh_layers.h;
+					height = (height < 400) ? height : 400;
+					domStyle.set(dom.byId("legend-container-0"), { "display":"block", "width":width + "px", "height": height + "px" });
+				}, 500);
 			}
 			
 						
@@ -1284,7 +1343,7 @@ define([
 					.ticks(5);
 				this._charts.jobs.yAxis = yAxis;
 				
-				var colors = ["#225EA8", "#7ECCBA", "#FFFFCC","#CDD6D5"];
+				var colors = ["#243394", "#7ECCBA", "#FFFFCC","#CDD6D5"];
 				var z = d3.scale.ordinal()
 					.range(colors);
 				
@@ -1560,7 +1619,7 @@ define([
 					.ticks(5);
 				this._charts.drive.yAxis = yAxis;
 				
-				var colors = ["#225EA8", "#7ECCBA", "#FFFFCC","#CDD6D5"];
+				var colors = ["#243394", "#7ECCBA", "#FFFFCC","#CDD6D5"];
 				var z = d3.scale.ordinal()
 					.range(colors);
 				
@@ -1820,7 +1879,7 @@ define([
 					.orient("left")
 					.ticks(5);
 				
-				var colors = ["#225EA8", "#7ECCBA", "#FFFFCC","#CDD6D5"];
+				var colors = ["#243394", "#7ECCBA", "#FFFFCC","#CDD6D5"];
 				var z = d3.scale.ordinal()
 					.range(colors);
 				

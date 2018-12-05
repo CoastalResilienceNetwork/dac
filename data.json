@@ -168,7 +168,7 @@
 						"description": "of workers in the city travel more than 10 miles to work"
 					},
 					"stat_2":{
-						"number": "29%",
+						"number": "49%",
 						"description": "of those workers hold very or extrememly low paying jobs"
 					},
 					"chart": [
@@ -217,11 +217,11 @@
 				},
 				"drive": {
 					"stat_1": {
-						"number": "46%",
+						"number": "47%",
 						"description": "of workers in the city travel more than 10 miles to work"
 					},
 					"stat_2":{
-						"number": "46%",
+						"number": "49%",
 						"description": "of those workers hold very or extrememly low paying jobs"
 					},
 					"chart": [
